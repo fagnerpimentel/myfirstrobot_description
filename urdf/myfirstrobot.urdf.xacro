@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<robot name="myfirstrobot"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- PROPERTIES -->
+  <xacro:property name="PI"         value="3.14159265" />
+  <xacro:property name="body_scale" value="0.6" />
+  <xacro:property name="effort"     value="30" />
+  <xacro:property name="velocity"   value="0.5" />
+
+  <!-- MACROS -->
+
+  <!-- base -->
+  <xacro:macro name="base" params="name">
+    <!-- link: base -->
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder length="${body_scale}" radius="${body_scale/3}"/>
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <!-- head -->
+  <xacro:macro name="head" params="name parent">
+    <!-- link: head -->
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <sphere radius="${body_scale/3}"/>
+        </geometry>
+      </visual>
+    </link>
+    <!-- link: head_box -->
+    <link name="${name}_box">
+     <visual>
+       <geometry>
+         <box size="${body_scale/10} ${body_scale/10} ${body_scale/10}"/>
+       </geometry>
+     </visual>
+    </link>
+    <!-- joint: base -> head -->
+    <joint name="joint_${parent}_to_${name}" type="revolute">
+      <origin xyz="0 0 ${body_scale/2}" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="${effort}" velocity="${velocity}" lower="-${PI/2}" upper="${PI/2}"/>
+    </joint>
+    <!-- joint: head -> head_box -->
+    <joint name="joint_head_to_head_box" type="fixed">
+      <origin xyz="${body_scale/5} 0 ${body_scale/4}" rpy="0 0 0"/>
+      <parent link="${name}"/>
+      <child link="${name}_box"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- leg -->
+  <xacro:macro name="leg" params="name parent *origin">
+    <!-- link: leg -->
+    <link name="${name}_leg">
+      <visual>
+        <geometry>
+          <box size="${body_scale/3} ${body_scale/6} ${body_scale}"/>
+        </geometry>
+      </visual>
+    </link>
+    <!-- link: leg_base -->
+    <link name="${name}_leg_base">
+      <visual>
+        <geometry>
+          <box size="${2*body_scale/3} ${body_scale/6} ${body_scale/6}"/>
+        </geometry>
+      </visual>
+    </link>
+    <!-- joint: parent -> leg -->
+    <joint name="${parent}_to_${name}_leg" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_leg"/>
+    </joint>
+    <!-- joint: leg -> leg_base -->
+    <joint name="${name}_leg_to_${name}_leg_base" type="fixed">
+      <origin xyz="0 0 -${body_scale/2}" rpy="0 0 0"/>
+      <parent link="${name}_leg"/>
+      <child link="${name}_leg_base"/>
+    </joint>
+    <!-- front wheel -->
+    <xacro:wheel name="${name}_front_wheel" parent="${name}_leg_base">
+      <origin xyz="${body_scale/5} 0 -${body_scale/10}" rpy="0 0 0"/>
+    </xacro:wheel>
+    <!-- back wheel -->
+    <xacro:wheel name="${name}_back_wheel" parent="${name}_leg_base">
+      <origin xyz="-${body_scale/5} 0 -${body_scale/10}" rpy="0 0 0"/>
+    </xacro:wheel>
+  </xacro:macro>
+
+  <!-- wheel -->
+  <xacro:macro name="wheel" params="name parent *origin">
+    <!-- link: wheel -->
+    <link name="${name}_wheel">
+      <visual>
+        <origin rpy="${PI/2} 0 0"/>
+        <geometry>
+          <cylinder length="${body_scale/6}" radius="${body_scale/20}"/>
+        </geometry>
+      </visual>
+    </link>
+    <!-- joint: parent_base -> wheel -->
+    <joint name="${parent}_to_${name}_wheel" type="continuous">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_wheel"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+  </xacro:macro>
+
+  <!-- FOOTPRINT -->
+  <!-- link: base_footprint -->
+  <link name='base_footprint'>
+    <visual name='visual'>
+      <geometry>
+        <box size=".001 .001 .001" />
+      </geometry>
+    </visual>
+  </link>
+  <!-- joint: base_footprint -> base -->
+  <joint name="joint_base_footprint_to_base" type="fixed">
+    <origin xyz="0 0 ${2*body_scale/3}" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base"/>
+  </joint>
+
+  <!-- ROBOT -->
+  <xacro:base name="base"/>
+  <xacro:head name="head" parent="base"/>
+  <xacro:leg name="right" parent="base">
+    <origin xyz="0  ${body_scale/3} -${body_scale/10}" rpy="0 0 0"/>
+  </xacro:leg>
+  <xacro:leg name="left" parent="base">
+    <origin xyz="0 -${body_scale/3} -${body_scale/10}" rpy="0 0 0"/>
+  </xacro:leg>
+
+</robot>

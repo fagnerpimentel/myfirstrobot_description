@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>myfirstrobot_description</name>
+  <version>0.0.0</version>
+  <description>The myfirstrobot_description package</description>
+  <maintainer email="fagnerpimentel@gmail.com">Fagner Pimentel</maintainer>
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+  <url type="website">https://gitlab.com/fpimentel/courses/myfirstrobot_description</url>
+  <author email="fagnerpimentel@gmail.com">Fagner Pimentel</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

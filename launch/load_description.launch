@@ -1,0 +1,26 @@
+<launch>
+  <arg name="model" default=""/>
+  <arg name="enable_rviz" default="false"/>
+  <arg name="enable_jspublisher" default="false"/>
+
+  <!-- robot_description -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro $(find myfirstrobot_description)/urdf/$(arg model)" />
+
+  <!-- rviz -->
+  <group if="$(arg enable_rviz)" >
+    <node name="rviz" pkg="rviz" type="rviz"
+      args="-d $(find myfirstrobot_description)/config/myfirstrobot.rviz" />
+  </group>
+
+  <!-- publishers -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <group if="$(arg enable_jspublisher)" >
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  </group>
+  <group unless="$(arg enable_jspublisher)" >
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  </group>
+
+
+</launch>
