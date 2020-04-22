@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="PI"         value="3.14159265" />
+  <xacro:property name="body_scale" value="0.6" />
+  <xacro:property name="effort"     value="30" />
+  <xacro:property name="velocity"   value="0.5" />
+
+</robot>
