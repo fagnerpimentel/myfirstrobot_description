@@ -5,7 +5,7 @@
 
     <!-- link: wheel -->
     <link name="${name}_wheel">
-      <origin rpy="${PI/2} 0 0"/>
+      <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
       <xacro:create_sphere m="1" r="${body_scale/20}">
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </xacro:create_sphere>

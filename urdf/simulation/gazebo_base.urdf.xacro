@@ -3,6 +3,7 @@
 
   <xacro:macro name="gazebo_base" params="reference">
     <gazebo>
+
       <plugin name="${reference}_controller" filename="libgazebo_ros_planar_move.so">
         <commandTopic>cmd_vel</commandTopic>
         <odometryTopic>odom</odometryTopic>
@@ -10,6 +11,7 @@
         <odometryRate>100.0</odometryRate>
         <robotBaseFrame>${reference}_footprint</robotBaseFrame>
       </plugin>
+
     </gazebo>
   </xacro:macro>
 

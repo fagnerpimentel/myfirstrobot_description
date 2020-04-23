@@ -3,7 +3,8 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /RobotModel1
       Splitter Ratio: 0.5
     Tree Height: 234
   - Class: rviz/Selection
@@ -24,7 +25,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Camera
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -78,8 +79,6 @@ Visualization Manager:
           Value: true
         left_leg_base:
           Value: true
-        odom:
-          Value: true
         right_back_wheel_wheel:
           Value: true
         right_front_wheel_wheel:
@@ -94,24 +93,23 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_footprint:
-            base:
-              head:
-                head_box:
+        base_footprint:
+          base:
+            head:
+              head_box:
+                {}
+            left_leg:
+              left_leg_base:
+                left_back_wheel_wheel:
                   {}
-              left_leg:
-                left_leg_base:
-                  left_back_wheel_wheel:
-                    {}
-                  left_front_wheel_wheel:
-                    {}
-              right_leg:
-                right_leg_base:
-                  right_back_wheel_wheel:
-                    {}
-                  right_front_wheel_wheel:
-                    {}
+                left_front_wheel_wheel:
+                  {}
+            right_leg:
+              right_leg_base:
+                right_back_wheel_wheel:
+                  {}
+                right_front_wheel_wheel:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -229,16 +227,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.7290937900543213
+      Distance: 2
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.962226390838623
-        Y: 0.889876127243042
-        Z: 0.9028177261352539
+        X: 1
+        Y: 1
+        Z: 1
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false

@@ -9,8 +9,8 @@
   <xacro:include filename="$(find myfirstrobot_description)/urdf/macros/parts/head.urdf.xacro" />
   <xacro:include filename="$(find myfirstrobot_description)/urdf/macros/parts/leg.urdf.xacro" />
 
-  <xacro:include filename="$(find myfirstrobot_description)/urdf/simulation/gazebo_base.urdf.xacro" />
-  <xacro:include filename="$(find myfirstrobot_description)/urdf/simulation/gazebo_camera.urdf.xacro" />
+  <!-- <xacro:include filename="$(find myfirstrobot_description)/urdf/simulation/gazebo_base.urdf.xacro" /> -->
+  <!-- <xacro:include filename="$(find myfirstrobot_description)/urdf/simulation/gazebo_camera.urdf.xacro" /> -->
 
   <!-- Robot -->
   <xacro:base name="base"/>
@@ -23,7 +23,7 @@
   </xacro:leg>
 
   <!-- Plugins -->
-  <xacro:gazebo_base reference="base"/>
-  <xacro:gazebo_camera reference="head_box"/>
+  <!-- <xacro:gazebo_base reference="base"/> -->
+  <!-- <xacro:gazebo_camera reference="head_box"/> -->
 
 </robot>
