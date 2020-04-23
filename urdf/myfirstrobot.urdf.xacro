@@ -2,7 +2,7 @@
 <robot name="myfirstrobot"
   xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find myfirstrobot_description)/urdf/macros/link_igv.urdf.xacro" />
+  <xacro:include filename="$(find myfirstrobot_description)/urdf/macros/link_geometry.urdf.xacro" />
   <xacro:include filename="$(find myfirstrobot_description)/urdf/macros/properties.urdf.xacro" />
 
   <xacro:include filename="$(find myfirstrobot_description)/urdf/macros/parts/base.urdf.xacro" />
@@ -16,10 +16,10 @@
   <xacro:base name="base"/>
   <xacro:head name="head" parent="base"/>
   <xacro:leg name="right" parent="base">
-    <origin xyz="0  ${body_scale/3} -${body_scale/10}" rpy="0 0 0"/>
+    <origin xyz="0  ${robot_scale/3} -${robot_scale/10}" rpy="0 0 0"/>
   </xacro:leg>
   <xacro:leg name="left" parent="base">
-    <origin xyz="0 -${body_scale/3} -${body_scale/10}" rpy="0 0 0"/>
+    <origin xyz="0 -${robot_scale/3} -${robot_scale/10}" rpy="0 0 0"/>
   </xacro:leg>
 
   <!-- Plugins -->

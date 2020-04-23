@@ -7,14 +7,14 @@
 
     <!-- link: leg -->
     <link name="${name}_leg">
-      <xacro:create_box m="1" x="${body_scale/3}" y="${body_scale/6}" z="${body_scale}">
+      <xacro:create_box m="${leg_mass}" x="${leg_x}" y="${leg_y}" z="${leg_z}">
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </xacro:create_box>
     </link>
 
     <!-- link: leg_base -->
     <link name="${name}_leg_base">
-      <xacro:create_box m="1" x="${2*body_scale/3}" y="${body_scale/6}" z="${body_scale/6}">
+      <xacro:create_box m="${leg_base_mass}" x="${2*robot_scale/3}" y="${robot_scale/6}" z="${robot_scale/6}">
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </xacro:create_box>
     </link>
@@ -28,19 +28,19 @@
 
     <!-- joint: leg -> leg_base -->
     <joint name="${name}_leg_to_${name}_leg_base" type="fixed">
-      <origin xyz="0 0 -${body_scale/2}" rpy="0 0 0"/>
+      <origin xyz="0 0 -${robot_scale/2}" rpy="0 0 0"/>
       <parent link="${name}_leg"/>
       <child link="${name}_leg_base"/>
     </joint>
 
     <!-- front wheel -->
     <xacro:wheel name="${name}_front_wheel" parent="${name}_leg_base">
-      <origin xyz="${body_scale/5} 0 -${body_scale/10}" rpy="0 0 0"/>
+      <origin xyz="${robot_scale/5} 0 -${robot_scale/10}" rpy="0 0 0"/>
     </xacro:wheel>
 
     <!-- back wheel -->
     <xacro:wheel name="${name}_back_wheel" parent="${name}_leg_base">
-      <origin xyz="-${body_scale/5} 0 -${body_scale/10}" rpy="0 0 0"/>
+      <origin xyz="-${robot_scale/5} 0 -${robot_scale/10}" rpy="0 0 0"/>
     </xacro:wheel>
 
   </xacro:macro>

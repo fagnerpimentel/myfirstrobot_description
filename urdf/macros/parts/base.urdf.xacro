@@ -8,14 +8,14 @@
 
     <!-- link: base -->
     <link name="${name}">
-      <xacro:create_cylinder m="2" r="${body_scale/3}" l="${body_scale}">
+      <xacro:create_cylinder m="${body_mass}" r="${body_radius}" l="${body_length}">
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </xacro:create_cylinder>
     </link>
 
     <!-- joint: base_footprint -> base -->
     <joint name="joint_base_footprint_to_base" type="fixed">
-      <origin xyz="0 0 ${2*body_scale/3}" rpy="0 0 0"/>
+      <origin xyz="0 0 ${2*robot_scale/3}" rpy="0 0 0"/>
       <parent link="base_footprint"/>
       <child link="base"/>
     </joint>

@@ -133,7 +133,7 @@ There are a lot of features in the Xacro language. In this class is presented on
 
 Test your robot:
 ```
-roslaunch myfirstrobot_description load_description.launch model:=myfirstrobot.urdf.xacro enable_rviz:=true enable_jspublisher:=true
+roslaunch myfirstrobot_description load_description.launch model:=myfirstrobot.urdf.xacro enable_gazebo:=true enable_rviz:=true
 ```
 
 ### Part 3: Links (collision and inertial)
@@ -170,7 +170,7 @@ To determine the values of the rotational inertia matrix, it is used the formula
 
 Test your robot:
 ```
-roslaunch myfirstrobot_description load_description.launch model:=myfirstrobot.urdf.xacro enable_rviz:=true enable_jspublisher:=true
+roslaunch myfirstrobot_description load_description.launch model:=myfirstrobot.urdf.xacro enable_gazebo:=true enable_rviz:=true
 ```
 
 ### Part 4: Plugins and simulation
