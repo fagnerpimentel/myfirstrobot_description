@@ -5,12 +5,12 @@
   <!-- LINKS -->
 
   <!-- link: base_footprint -->
-  <link name='base_footprint'>
-    <visual name='visual'>
+  <link name="base_footprint">
+    <!-- <visual name="visual">
       <geometry>
         <box size=".001 .001 .001" />
       </geometry>
-    </visual>
+    </visual> -->
   </link>
 
   <!-- link: base -->

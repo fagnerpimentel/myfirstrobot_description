@@ -1,0 +1,56 @@
+launch:
+
+    # argument list
+    - arg: {name: "x",   default: "0"}
+    - arg: {name: "y",   default: "0"}
+    - arg: {name: "yaw", default: "0"}
+
+
+    # xacro
+    - executable:
+        cmd: "xacro $(find-pkg-share myfirstrobot_description)/urdf/myfirstrobot.urdf.xacro -o $(find-pkg-share myfirstrobot_description)/urdf/teste.urdf"
+
+    # spown robot 
+    - node:
+        name: "spawn_entity"
+        pkg:  "gazebo_ros"
+        exec: "spawn_entity.py"
+        args: "-entity r2d2 -x $(var x) -y $(var y) -Y $(var yaw) -file $(find-pkg-share myfirstrobot_description)/urdf/teste.urdf"
+
+    # robot state publisher
+    - node:
+        name: "robot_state_publisher"
+        pkg:  "robot_state_publisher"
+        exec: "robot_state_publisher"
+        args: "$(find-pkg-share myfirstrobot_description)/urdf/teste.urdf"
+        param:
+            - name: "use_sim_time"
+              value: True
+
+    # joint state publisher
+    - node:
+        name: "joint_state_publisher"
+        pkg:  "joint_state_publisher"
+        exec: "joint_state_publisher"
+        param:
+            - name: "use_sim_time"
+              value: True
+
+    # - node:
+    #     if:   "$(var gui_joint)"
+    #     name: "joint_state_publisher_gui"
+    #     pkg:  "joint_state_publisher_gui"
+    #     exec: "joint_state_publisher_gui"
+    #     param:
+    #         - name: "use_sim_time"
+    #           value: True
+
+    # robot teleop
+    - node:
+        name: "teleop_twist_keyboard"
+        pkg:  "teleop_twist_keyboard"
+        exec: "teleop_twist_keyboard"
+        launch-prefix: "xterm -e"
+        # remap:
+        #     - from: "/cmd_vel"
+        #       to: "/r2d2/cmd_vel"

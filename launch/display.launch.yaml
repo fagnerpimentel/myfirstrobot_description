@@ -1,0 +1,31 @@
+launch:
+
+    # argument list
+    - arg: {name: "gui_gazebo", default: "true"}
+    - arg: {name: "gui_teleop", default: "true"}
+    # - arg: {name: "gui_joint",  default: "true"}
+    - arg: {name: "gui_rviz",   default: "true"}
+    - arg: {name: "rviz_file",  default: "$(find-pkg-share myfirstrobot_description)/rviz/myfirstrobot.rviz"}
+
+    # gazebo server
+    - executable:
+        cmd: "gzserver --verbose -s libgazebo_ros_init.so -s libgazebo_ros_factory.so -s libgazebo_ros_force_system.so"
+
+    # gazebo client
+    - executable:
+        if: "$(var gui_gazebo)"
+        cmd: "gzclient"
+
+    # load robot
+    - include:
+        file: "$(find-pkg-share myfirstrobot_description)/launch/load_robot.launch.yaml"
+        # arg:
+        #     - {name: "gui_joint",   value: "$(var gui_joint)"}
+
+    # viz2
+    - node:
+        if: "$(var gui_rviz)"
+        name: "rviz2"
+        pkg:  "rviz2"
+        exec: "rviz2"
+        args: "-d $(var rviz_file)"

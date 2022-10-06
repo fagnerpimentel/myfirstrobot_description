@@ -1,15 +1,27 @@
 <?xml version="1.0"?>
-<package format="2">
-
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>myfirstrobot_description</name>
-  <version>0.0.0</version>
-  <description>The myfirstrobot_description package</description>
-  <maintainer email="fagnerpimentel@gmail.com">Fagner Pimentel</maintainer>
-  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
-  <url type="website">https://gitlab.com/fpimentel/courses/myfirstrobot_description</url>
+  <version>1.0.0</version>
+
+  <description>myfirstrobot_description</description>
   <author email="fagnerpimentel@gmail.com">Fagner Pimentel</author>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <maintainer email="fagnerpimentel@gmail.com">Fagner Pimentel</maintainer>
 
+  <license>BSD</license>
+  <url></url>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>
